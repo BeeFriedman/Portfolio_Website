@@ -1,4 +1,4 @@
-var userInput = document.getElementById("page");
+var userInput = document.getElementById("user-input");
 
 userInput.addEventListener("keyup", event => {
     if (event.keyCode === 13) {
@@ -7,6 +7,7 @@ userInput.addEventListener("keyup", event => {
         switch(userInput.value.toLowerCase()){
             case "help":
                 displayCommands();
+                break;
         }
     }
 });

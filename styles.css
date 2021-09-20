@@ -1,34 +1,61 @@
-body{
-    background-color: #333;
-    color: #0a0;
+body {
+	background-color: #333;
+	color: #0a0;
 }
 
-p{
-    float: left;
-    margin: 0;
+/* The header styles */
+
+header {
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	grid-template-rows: 30px;
+	width: 473px;
+	justify-content: center;
+	text-align: center;
 }
 
-h3{
-    margin: 0;
-    float: left;
+.header-text {
+	float: left;
+	font-size: 30px;
+	height: 30px;
+	width: 430px;
+	margin: 0;
 }
 
-#page{
-    background-color: #333;
-    color: #0a0;
-    outline: none;
-    border: none;
+.border {
+	font-size: 30px;
+	height: 30px;
+	grid-column: 1 / -1;
 }
 
-#box{
-    width: 273px;
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-template-rows: 20px;
+.side-border {
+	height: 30px;
+	width: fit-content;
+	margin: 0;
+	font-size: 30px;
 }
 
-.side-border{
-    width: fit-content;
-    margin: 0;
+/* line styles */
 
+#line {
+	height: 25px;
+	font-size: 25px;
+}
+
+#input-label {
+	float: left;
+	margin: 0;
+	height: inherit;
+	font-size: inherit;
+}
+
+#user-input {
+	background-color: #333;
+	color: #0a0;
+	outline: none;
+	border: none;
+	height: inherit;
+	padding: 0;
+	margin-left: 5px;
+	font-size: inherit;
 }
