@@ -1,4 +1,34 @@
 body{
     background-color: #333;
-    color: #0f6;
+    color: #0a0;
+}
+
+p{
+    float: left;
+    margin: 0;
+}
+
+h3{
+    margin: 0;
+    float: left;
+}
+
+#page{
+    background-color: #333;
+    color: #0a0;
+    outline: none;
+    border: none;
+}
+
+#box{
+    width: 273px;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: 20px;
+}
+
+.side-border{
+    width: fit-content;
+    margin: 0;
+
 }
