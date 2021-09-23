@@ -37,19 +37,19 @@ header {
 
 /* line styles */
 
-#line {
+.input-line {
 	height: 25px;
 	font-size: 25px;
 }
 
-#input-label {
+.input-label {
 	float: left;
 	margin: 0;
 	height: inherit;
 	font-size: inherit;
 }
 
-#user-input {
+.user-input {
 	background-color: #333;
 	color: #0a0;
 	outline: none;
@@ -58,4 +58,10 @@ header {
 	padding: 0;
 	margin-left: 5px;
 	font-size: inherit;
+}
+
+.output-line{
+	height: 25px;
+	font-size: 25px;
+	margin: 0;
 }

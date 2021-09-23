@@ -1,7 +1,7 @@
 var userInput = document.getElementById("user-input");
 
 userInput.addEventListener("keyup", event => {
-    if (event.keyCode === 13) {
+    if (event.key === "Enter" || event.keyCode === 13) {
         event.preventDefault();
 
         switch(userInput.value.toLowerCase()){
@@ -12,14 +12,29 @@ userInput.addEventListener("keyup", event => {
     }
 });
 
-function displayCommands(){
-    var br = document.createElement("br");
-    var tag = document.createElement("p");
-    var text = document.createTextNode(`Type "ls" to list all available directories`);
-    tag.appendChild(text);
-    console.log(tag);
+function createNewUserInputLine() {
+    var body = document.body;
+    var inputLine = document.createElement("div");
+    var inputLineLabel = document.createElement("p");
+    var inputLineTextbox = document.createElement("input");
+    var labelText = document.createTextNode("user@beefriedman:~$");
+    inputLine.className = "input-line";
+    inputLineLabel.className = "input-label"
+    inputLineTextbox.className = "user-input"
+    inputLineLabel.appendChild(labelText);
+    inputLine.appendChild(inputLineLabel);
+    inputLine.appendChild(inputLineTextbox);
+    body.appendChild(inputLine);
+}
+
+function displayCommands() {
     var element = document.body;
-    console.log(element);
+    var br = document.createElement("br");
+    var outputLine = document.createElement("p");
+    var outputLineText = document.createTextNode(`Type "ls" to list all available directories`);
+    outputLine.className = "output-line";
+    outputLine.appendChild(outputLineText);
     element.appendChild(br);
-    element.appendChild(tag);
+    element.appendChild(outputLine);
+    createNewUserInputLine();
 }
