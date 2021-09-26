@@ -1,3 +1,26 @@
+//the event handler function
+function captureEnterPress(event) {
+    var userInput = activeUserInput.value.toLowerCase().trim();
+    if (event.key === "Enter" || event.keyCode === 13) {
+        event.preventDefault();
+
+        switch (userInput) {
+            case "help":
+                displayHelp();
+                break;
+            case "ls":
+                displayLs();
+                break;
+            case "projects":
+                loadProjects();
+            case "about":
+                loadAbout();
+            default:
+                displayError(userInput);
+        }
+    }
+}
+
 //creates the container, text and input for the new line
 function createNewUserInputLine() {
     var body = document.body;
@@ -22,28 +45,6 @@ function addListenerForUserInput() {
     var userInputArray = document.getElementsByClassName("user-input");
     var activeUserInput = userInputArray[userInputArray.length - 1];
     var unactiveUserInput = userInputArray[userInputArray.length - 2];
-
-    function captureEnterPress(event) {
-        var userInput = activeUserInput.value.toLowerCase().trim();
-        if (event.key === "Enter" || event.keyCode === 13) {
-            event.preventDefault();
-
-            switch (userInput) {
-                case "help":
-                    displayHelp();
-                    break;
-                case "ls":
-                    displayLs();
-                    break;
-                case "projects":
-                    loadProjects();
-                case "about":
-                    loadAbout();
-                default:
-                    displayError(userInput);
-            }
-        }
-    }
 
     if (userInputArray.length > 1) {
         unactiveUserInput.removeEventListener("keyup", captureEnterPress);
