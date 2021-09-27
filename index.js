@@ -1,3 +1,6 @@
+var userInputArray = document.getElementsByClassName("user-input");
+var activeUserInput = userInputArray[userInputArray.length - 1];
+
 //the event handler function
 function captureEnterPress(event) {
     var userInput = activeUserInput.value.toLowerCase().trim();
@@ -42,17 +45,14 @@ function createNewUserInputLine() {
 //the user clicks the enter key, and removes the listener and disables
 //the input from the last input line
 function addListenerForUserInput() {
-    var userInputArray = document.getElementsByClassName("user-input");
-    var activeUserInput = userInputArray[userInputArray.length - 1];
     var unactiveUserInput = userInputArray[userInputArray.length - 2];
+    activeUserInput = userInputArray[userInputArray.length - 1];
 
     if (userInputArray.length > 1) {
-        unactiveUserInput.removeEventListener("keyup", captureEnterPress);
         unactiveUserInput.disabled = true;
     }
 
     activeUserInput.focus();
-    activeUserInput.addEventListener("keyup", captureEnterPress);
 }
 
 //creates the output line and takes the output text as an argument.
@@ -98,4 +98,5 @@ function displayError(input) {
 //when the page is finished loading it prints the first line
 onload = () => {
     createNewUserInputLine();
+    document.documentElement.addEventListener("keyup", captureEnterPress);
 }
