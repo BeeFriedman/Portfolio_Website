@@ -16,8 +16,10 @@ function captureEnterPress(event) {
                 break;
             case "projects":
                 loadProjects();
+                break;
             case "about":
                 loadAbout();
+                break;
             default:
                 displayError(userInput);
         }
@@ -59,39 +61,50 @@ function addListenerForUserInput() {
 function createOutputLine(outputText) {
     var element = document.body;
     var br = document.createElement("br");
-    var outputLine = document.createElement("p");
-    var outputLineText = document.createTextNode(outputText);
-    outputLine.className = "output-line";
-    outputLine.appendChild(outputLineText);
-    element.appendChild(outputLine);
-    element.appendChild(br);
+    var outputLine;
+    var outputLineText;
+
+
+    for(var i = 0; i < outputText.length; i++){
+        if(outputText[i] === "br"){
+            element.appendChild(br);
+        }
+        else{
+            outputLine = document.createElement("p");
+            outputLineText = document.createTextNode(outputText[i]);
+            outputLine.className = "output-line";
+            outputLine.appendChild(outputLineText);
+            element.appendChild(outputLine);
+        }
+    }
     createNewUserInputLine();
 }
 
 //prints out the output for the help command
 function displayHelp() {
-    var outputText = `Type 'ls' to list all available directories`;
+    var outputText = [`Type 'ls' to list all available directories`, `br`];
     createOutputLine(outputText);
 }
 
 //prints out the output for the ls command
 function displayLs() {
-    //TODO
+    var outputText = [`projects`, `br`, `about`, `br`];
+    createOutputLine(outputText);
 }
 
 //prints out the output for the project directory
 function loadProjects() {
-    //TODO
+    window.location.href = "projects.html";
 }
 
 //prints out the output for the about directory
 function loadAbout() {
-    //TODO
+    window.location.href = "about.html";
 }
 
 //prints out the output for the wrong inputs
 function displayError(input) {
-    var outputText = `'${input}' is not a valid command type help for a list of commands`
+    var outputText = [`'${input}' is not a valid command type help for a list of commands`, `br`];
     createOutputLine(outputText);
 }
 
