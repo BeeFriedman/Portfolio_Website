@@ -1,3 +1,4 @@
+var myStorage = window.sessionStorage;
 var userInputArray = document.getElementsByClassName("user-input");
 var activeUserInput = userInputArray[userInputArray.length - 1];
 
@@ -28,7 +29,7 @@ function captureEnterPress(event) {
 
 //creates the container, text and input for the new line
 function createNewUserInputLine() {
-    var body = document.body;
+    var terminalContanier = document.getElementById("terminal");
     var inputLine = document.createElement("div");
     var inputLineLabel = document.createElement("p");
     var inputLineTextbox = document.createElement("input");
@@ -39,7 +40,8 @@ function createNewUserInputLine() {
     inputLineLabel.appendChild(labelText);
     inputLine.appendChild(inputLineLabel);
     inputLine.appendChild(inputLineTextbox);
-    body.appendChild(inputLine);
+    terminalContanier.appendChild(inputLine);
+    myStorage.setItem("storedPage", terminalContanier.innerHTML);
     addListenerForUserInput();
 }
 
@@ -59,7 +61,7 @@ function addListenerForUserInput() {
 
 //creates the output line and takes the output text as an argument.
 function createOutputLine(outputText) {
-    var element = document.body;
+    var terminalContanier = document.getElementById("terminal");
     var br = document.createElement("br");
     var outputLine;
     var outputLineText;
@@ -67,14 +69,16 @@ function createOutputLine(outputText) {
 
     for(var i = 0; i < outputText.length; i++){
         if(outputText[i] === "br"){
-            element.appendChild(br);
+            terminalContanier.appendChild(br);
+            myStorage.setItem("storedPage", terminalContanier.innerHTML);
         }
         else{
             outputLine = document.createElement("p");
             outputLineText = document.createTextNode(outputText[i]);
             outputLine.className = "output-line";
             outputLine.appendChild(outputLineText);
-            element.appendChild(outputLine);
+            terminalContanier.appendChild(outputLine);
+            myStorage.setItem("storedPage", terminalContanier.innerHTML);
         }
     }
     createNewUserInputLine();
@@ -110,6 +114,10 @@ function displayError(input) {
 
 //when the page is finished loading it prints the first line
 onload = () => {
-    createNewUserInputLine();
+    var storedPage = myStorage.getItem("storedPage");
+    if(storedPage){
+        document.getElementById("terminal").innerHTML += (storedPage + "<br>");
+    }
+    createNewUserInputLine();  
     document.documentElement.addEventListener("keyup", captureEnterPress);
 }
