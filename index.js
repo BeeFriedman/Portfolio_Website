@@ -1,11 +1,14 @@
 var myStorage = window.sessionStorage;
 var userInputArray = document.getElementsByClassName("user-input");
+var userInputValues = [];
 var activeUserInput = userInputArray[userInputArray.length - 1];
 
 //the event handler function
 function captureEnterPress(event) {
-    var userInput = activeUserInput.value.toLowerCase().trim();
     if (event.key === "Enter" || event.keyCode === 13) {
+        var userInput = activeUserInput.value.toLowerCase().trim();
+        userInputValues[userInputValues.length] = activeUserInput.value;
+        myStorage.setItem("userValues", JSON.stringify(userInputValues));
         event.preventDefault();
 
         switch (userInput) {
@@ -35,8 +38,8 @@ function createNewUserInputLine() {
     var inputLineTextbox = document.createElement("input");
     var labelText = document.createTextNode("user@beefriedman:~$");
     inputLine.className = "input-line";
-    inputLineLabel.className = "input-label"
-    inputLineTextbox.className = "user-input"
+    inputLineLabel.className = "input-label";
+    inputLineTextbox.className = "user-input";
     inputLineLabel.appendChild(labelText);
     inputLine.appendChild(inputLineLabel);
     inputLine.appendChild(inputLineTextbox);
@@ -115,8 +118,14 @@ function displayError(input) {
 //when the page is finished loading it prints the first line
 onload = () => {
     var storedPage = myStorage.getItem("storedPage");
+    var values = JSON.parse(myStorage.getItem("userValues"));
+
     if(storedPage){
         document.getElementById("terminal").innerHTML += (storedPage + "<br>");
+
+        for(var i = 0; i < values.length; i++){
+            userInputArray[i].value = values[i];
+        }
     }
     createNewUserInputLine();  
     document.documentElement.addEventListener("keyup", captureEnterPress);
