@@ -1,0 +1,19 @@
+body {
+	background-color: #333;
+	color: #0a0;
+}
+
+#grid-container{
+    margin: 0 auto;
+    margin-top: 10%;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    height: 50vh;
+    width: 50vw;
+}
+
+.grid-item{
+    margin: 2%;
+    border: 1px solid #0a0;
+    border-radius: 5px;
+}
