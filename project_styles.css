@@ -13,7 +13,8 @@ body {
 }
 
 .grid-item{
-    margin: 2%;
     border: 1px solid #0a0;
     border-radius: 5px;
+    height: 95%;
+    width: 95%;
 }
