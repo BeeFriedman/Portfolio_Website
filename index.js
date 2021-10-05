@@ -7,8 +7,7 @@ var activeUserInput = userInputArray[userInputArray.length - 1];
 function captureEnterPress(event) {
     if (event.key === "Enter" || event.keyCode === 13) {
         var userInput = activeUserInput.value.toLowerCase().trim();
-        userInputValues[userInputValues.length] = activeUserInput.value;
-        myStorage.setItem("userValues", JSON.stringify(userInputValues));
+        saveUserInput();
         event.preventDefault();
 
         switch (userInput) {
@@ -115,6 +114,11 @@ function displayError(input) {
     createOutputLine(outputText);
 }
 
+function saveUserInput(){
+    userInputValues[userInputValues.length] = userInputArray[userInputArray.length - 1].value;
+    myStorage.setItem("userValues", JSON.stringify(userInputValues));
+}
+
 //when the page is finished loading it prints the first line
 onload = () => {
     var storedPage = myStorage.getItem("storedPage");
@@ -125,8 +129,15 @@ onload = () => {
 
         for(var i = 0; i < values.length; i++){
             userInputArray[i].value = values[i];
+            userInputValues[i] = values[i];
         }
     }
-    createNewUserInputLine();  
-    document.documentElement.addEventListener("keyup", captureEnterPress);
+
+    if(userInputArray.length < 1|| (userInputArray.length > 1 && userInputArray[userInputArray.length - 1].value != "")){
+        createNewUserInputLine();  
+        document.documentElement.addEventListener("keyup", captureEnterPress);
+    }
+    else{
+        document.documentElement.addEventListener("keyup", captureEnterPress);
+    }
 }
