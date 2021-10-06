@@ -3,7 +3,7 @@ body {
 	color: #0a0;
 }
 
-#grid-container{
+#project-container{
     margin: 0 auto;
     margin-top: 10%;
     display: grid;
@@ -12,9 +12,7 @@ body {
     width: 50vw;
 }
 
-.grid-item{
+.project-item{
     border: 1px solid #0a0;
     border-radius: 5px;
-    height: 95%;
-    width: 95%;
 }
