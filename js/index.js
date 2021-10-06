@@ -6,7 +6,8 @@ var activeUserInput = userInputArray[userInputArray.length - 1];
 //the event handler function
 function captureEnterPress(event) {
     if (event.key === "Enter" || event.keyCode === 13) {
-        var userInput = activeUserInput.value.toLowerCase().trim();
+        activeUserInput = userInputArray[userInputArray.length - 1];
+        var userInput = activeUserInput.value.toLowerCase().trim()
         saveUserInput();
         event.preventDefault();
 
@@ -116,6 +117,7 @@ function displayError(input) {
 
 function saveUserInput(){
     userInputValues[userInputValues.length] = userInputArray[userInputArray.length - 1].value;
+    console.log(userInputValues)
     myStorage.setItem("userValues", JSON.stringify(userInputValues));
 }
 
@@ -126,14 +128,13 @@ onload = () => {
 
     if(storedPage){
         document.getElementById("terminal").innerHTML += (storedPage + "<br>");
-
         for(var i = 0; i < values.length; i++){
             userInputArray[i].value = values[i];
             userInputValues[i] = values[i];
         }
     }
 
-    if(userInputArray.length < 1|| (userInputArray.length > 1 && userInputArray[userInputArray.length - 1].value != "")){
+    if(userInputArray.length < 1|| (userInputArray.length > 0 && userInputArray[userInputArray.length - 1].value != "")){
         createNewUserInputLine();  
         document.documentElement.addEventListener("keyup", captureEnterPress);
     }
