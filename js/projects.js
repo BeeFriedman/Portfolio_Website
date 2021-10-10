@@ -3,7 +3,7 @@ var t = document.getElementById("tictactoe");
 var t1 = document.getElementById("2");
 var t2 = document.getElementById("3");
 
-a[0].onclick = () => {
+a[3].onclick = () => {
     if(t.style.gridColumnEnd == 4){
         t.style.gridColumnStart = 1;
         t.style.gridColumnEnd = 2;  
@@ -18,7 +18,7 @@ a[0].onclick = () => {
     }
 };
 
-a[1].onclick = () => {
+a[4].onclick = () => {
     if(t1.style.gridColumnEnd == 4){
         t1.style.gridColumnStart = 2;
         t1.style.gridColumnEnd = 3;  
@@ -33,7 +33,7 @@ a[1].onclick = () => {
     }
 };
 
-a[2].onclick = () => {
+a[5].onclick = () => {
     if(t2.style.gridColumnEnd == 4){
         t2.style.gridColumnStart = 3;
         t2.style.gridColumnEnd = 4;  

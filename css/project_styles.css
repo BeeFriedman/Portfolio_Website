@@ -10,9 +10,12 @@ body {
     grid-template-columns: repeat(3, auto);
     height: 50vh;
     width: 50vw;
+    text-align: center;
 }
 
 .project-item{
+    text-decoration: none;
     border: 1px solid #0a0;
     border-radius: 5px;
+    color: inherit;
 }
