@@ -2,3 +2,14 @@ body {
 	background-color: #333;
 	color: #0a0;
 }
+
+.navbar-nav {
+	width: 50%;
+}
+
+.nav-link {
+	width: 33%;
+	color: #0a0 !important;
+	text-align: center;
+	font-size: large;
+}
