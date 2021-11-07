@@ -1,7 +1,10 @@
 body {
-	font-family: Times New Roman;
 	background-color: #333;
 	color: #0a0;
+}
+
+#terminal-container {
+	font-family: Times New Roman;
 }
 
 /* The header styles */

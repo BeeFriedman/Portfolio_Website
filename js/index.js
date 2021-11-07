@@ -128,9 +128,11 @@ onload = () => {
 
     if(storedPage){
         document.getElementById("terminal").innerHTML += (storedPage + "<br>");
-        for(var i = 0; i < values.length; i++){
-            userInputArray[i].value = values[i];
-            userInputValues[i] = values[i];
+        if(values){
+            for(var i = 0; i < values.length; i++){
+                userInputArray[i].value = values[i];
+                userInputValues[i] = values[i];
+            }
         }
     }
 
