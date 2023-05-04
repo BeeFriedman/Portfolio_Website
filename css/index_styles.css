@@ -14,7 +14,7 @@ body {
 	font-size: large;
 }
 
-#terminal-container {
+#app {
 	font-family: Times New Roman;
 }
 
@@ -53,26 +53,37 @@ header {
 /* line styles */
 
 .input-line {
-	height: 25px;
+	display: flex;
+	justify-content: left;
+	align-items: stretch;
+	min-height: 27px;
+	height: auto;
 	font-size: 25px;
+	width: 100vw;
 }
 
 .input-label {
+	display: block;
+	text-align: center;
+	flex-basis: 10%;
 	float: left;
 	margin: 0;
-	height: inherit;
 	font-size: inherit;
 }
 
 .user-input {
+	flex-grow: 1;
 	background-color: #333;
 	color: #0a0;
 	outline: none;
 	border: none;
-	height: inherit;
 	padding: 0;
 	margin-left: 5px;
 	font-size: inherit;
+	resize:none;
+	max-height:450px;
+	min-height:27px;
+	overflow: hidden;
 }
 
 .output-line{

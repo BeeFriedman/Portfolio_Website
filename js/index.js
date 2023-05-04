@@ -1,32 +1,6 @@
-function welcome() {
-    var terminalContanier = document.getElementById("terminal");
-    var inputLine = document.createElement("tr");
-    var inputLineLabel = document.createElement("td");
-    var inputLineTextbox = document.createElement("td");
-    var labelText = document.createTextNode("user@beefriedman:~$");
-    inputLine.className = "input-line";
-    inputLineLabel.className = "input-label";
-    inputLineTextbox.className = "user-input";
-    inputLineLabel.appendChild(labelText);
-    inputLine.appendChild(inputLineLabel);
-    inputLine.appendChild(inputLineTextbox);
-    terminalContanier.appendChild(inputLine);
-    var welcome = `Hi, my name is Berel Friedman and I am a software developer.
-        I tried designing this site to imitate a computer terminal. You could type help to get a list of commands.
-        If you don't want to type in order to navigate the site feel free to use the navigation bar.`
-    inputLineTextbox.focus();
-    inputLineTextbox.align = "Left";
-    var i = 0;
-    var intervalId = setInterval(function() {
-        if (i < welcome.length) {
-            inputLineTextbox.innerHTML += welcome.charAt(i);
-            i++;
-        } else {
-            clearInterval(intervalId);
-        }
-    }, 75);
-    
-}
+var userInputArray = document.getElementsByClassName("user-input");
+var userInputValues = [];
+var activeUserInput = userInputArray[userInputArray.length - 1];
 
 //the event handler function
 function captureEnterPress(event) {
@@ -140,13 +114,65 @@ function displayError(input) {
 
 function saveUserInput(){
     userInputValues[userInputValues.length] = userInputArray[userInputArray.length - 1].value;
-    console.log(userInputValues)
-    myStorage.setItem("userValues", JSON.stringify(userInputValues));
 }
+$("textarea").on("input", function(e) {
+    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+        $(this).height($(this).height()+1);
+    };
+});
 
 //when the page is finished loading it prints the first line
 onload = () => {
-        welcome();
-        createNewUserInputLine();  
-        document.documentElement.addEventListener("keyup", captureEnterPress);
+        app.welcome();
+
+        setTimeout(() => {
+            createNewUserInputLine();
+            document.documentElement.addEventListener("keyup", captureEnterPress);
+        }, 13000);  
+  
+        $(document).on("input", "textarea", function()
+        {
+            $(this).prop('style').cssText = 'height:auto;';
+            $(this).prop('style').cssText = 'height:' + $(this).prop('scrollHeight') + 'px';
+        });
 }
+
+var app = new Vue({
+    el: '#app',
+    data: {
+    },
+    methods: { 
+        welcome: function() {
+            var terminalContanier = document.getElementById("terminal");
+            var inputLine = document.createElement("div");
+            var inputLineLabel = document.createElement("p");
+            var inputLineTextbox = document.createElement("textarea");
+            var labelText = document.createTextNode("user@beefriedman:~$");
+            inputLine.className = "input-line";
+            inputLineLabel.className = "input-label";
+            inputLineTextbox.className = "user-input";
+            inputLineLabel.appendChild(labelText);
+            inputLine.appendChild(inputLineLabel);
+            inputLine.appendChild(inputLineTextbox);
+            terminalContanier.appendChild(inputLine);
+            var welcome = "Hi, my name is Berel Friedman and I am a software developer." +
+                " I tried designing this site to imitate a computer terminal. You could type help to get a list of commands." + 
+                " If you don't want to type in order to navigate the site feel free to use the navigation bar."
+            inputLineTextbox.style.overflow = "hidden"
+            inputLineTextbox.focus();
+
+            var i = 0;
+            var intervalId = setInterval(function() {
+                if (i < welcome.length) {
+                    inputLineTextbox.dispatchEvent(new Event('input', {bubbles:true}));
+                    inputLineTextbox.value += welcome.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(intervalId);
+                }
+            }, 50)   
+            return Promise.resolve();
+        }
+
+    }
+  })
