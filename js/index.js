@@ -1,7 +1,32 @@
-var myStorage = window.sessionStorage;
-var userInputArray = document.getElementsByClassName("user-input");
-var userInputValues = [];
-var activeUserInput = userInputArray[userInputArray.length - 1];
+function welcome() {
+    var terminalContanier = document.getElementById("terminal");
+    var inputLine = document.createElement("tr");
+    var inputLineLabel = document.createElement("td");
+    var inputLineTextbox = document.createElement("td");
+    var labelText = document.createTextNode("user@beefriedman:~$");
+    inputLine.className = "input-line";
+    inputLineLabel.className = "input-label";
+    inputLineTextbox.className = "user-input";
+    inputLineLabel.appendChild(labelText);
+    inputLine.appendChild(inputLineLabel);
+    inputLine.appendChild(inputLineTextbox);
+    terminalContanier.appendChild(inputLine);
+    var welcome = `Hi, my name is Berel Friedman and I am a software developer.
+        I tried designing this site to imitate a computer terminal. You could type help to get a list of commands.
+        If you don't want to type in order to navigate the site feel free to use the navigation bar.`
+    inputLineTextbox.focus();
+    inputLineTextbox.align = "Left";
+    var i = 0;
+    var intervalId = setInterval(function() {
+        if (i < welcome.length) {
+            inputLineTextbox.innerHTML += welcome.charAt(i);
+            i++;
+        } else {
+            clearInterval(intervalId);
+        }
+    }, 75);
+    
+}
 
 //the event handler function
 function captureEnterPress(event) {
@@ -36,6 +61,7 @@ function createNewUserInputLine() {
     var inputLine = document.createElement("div");
     var inputLineLabel = document.createElement("p");
     var inputLineTextbox = document.createElement("input");
+    inputLineTextbox.autocomplete = "off";
     var labelText = document.createTextNode("user@beefriedman:~$");
     inputLine.className = "input-line";
     inputLineLabel.className = "input-label";
@@ -44,7 +70,6 @@ function createNewUserInputLine() {
     inputLine.appendChild(inputLineLabel);
     inputLine.appendChild(inputLineTextbox);
     terminalContanier.appendChild(inputLine);
-    myStorage.setItem("storedPage", terminalContanier.innerHTML);
     addListenerForUserInput();
 }
 
@@ -73,7 +98,6 @@ function createOutputLine(outputText) {
     for(var i = 0; i < outputText.length; i++){
         if(outputText[i] === "br"){
             terminalContanier.appendChild(br);
-            myStorage.setItem("storedPage", terminalContanier.innerHTML);
         }
         else{
             outputLine = document.createElement("p");
@@ -81,7 +105,6 @@ function createOutputLine(outputText) {
             outputLine.className = "output-line";
             outputLine.appendChild(outputLineText);
             terminalContanier.appendChild(outputLine);
-            myStorage.setItem("storedPage", terminalContanier.innerHTML);
         }
     }
     createNewUserInputLine();
@@ -123,24 +146,7 @@ function saveUserInput(){
 
 //when the page is finished loading it prints the first line
 onload = () => {
-    var storedPage = myStorage.getItem("storedPage");
-    var values = JSON.parse(myStorage.getItem("userValues"));
-
-    if(storedPage){
-        document.getElementById("terminal").innerHTML += (storedPage + "<br>");
-        if(values){
-            for(var i = 0; i < values.length; i++){
-                userInputArray[i].value = values[i];
-                userInputValues[i] = values[i];
-            }
-        }
-    }
-
-    if(userInputArray.length < 1|| (userInputArray.length > 0 && userInputArray[userInputArray.length - 1].value != "")){
+        welcome();
         createNewUserInputLine();  
         document.documentElement.addEventListener("keyup", captureEnterPress);
-    }
-    else{
-        document.documentElement.addEventListener("keyup", captureEnterPress);
-    }
 }
