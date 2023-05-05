@@ -14,7 +14,12 @@ body {
 	font-size: large;
 }
 
+#sidebar {
+	width: 15%;
+	float: left; 
+}
 #app {
+	margin: 2%;
 	font-family: Times New Roman;
 }
 
@@ -59,7 +64,7 @@ header {
 	min-height: 27px;
 	height: auto;
 	font-size: 25px;
-	width: 100vw;
+	width: 85vw;
 }
 
 .input-label {

@@ -123,18 +123,26 @@ $("textarea").on("input", function(e) {
 
 //when the page is finished loading it prints the first line
 onload = () => {
+    var CookieValue = Cookies.get("wlcm");
+    console.log(CookieValue)
+    if(!CookieValue) {
         app.welcome();
-
+    
         setTimeout(() => {
             createNewUserInputLine();
             document.documentElement.addEventListener("keyup", captureEnterPress);
         }, 13000);  
-  
-        $(document).on("input", "textarea", function()
-        {
-            $(this).prop('style').cssText = 'height:auto;';
-            $(this).prop('style').cssText = 'height:' + $(this).prop('scrollHeight') + 'px';
-        });
+    }
+    else{
+        createNewUserInputLine();
+        document.documentElement.addEventListener("keyup", captureEnterPress); 
+    }
+
+    $(document).on("input", "textarea", function()
+    {
+        $(this).prop('style').cssText = 'height:auto;';
+        $(this).prop('style').cssText = 'height:' + $(this).prop('scrollHeight') + 'px';
+    });
 }
 
 var app = new Vue({
@@ -170,8 +178,8 @@ var app = new Vue({
                 } else {
                     clearInterval(intervalId);
                 }
-            }, 50)   
-            return Promise.resolve();
+            }, 50)
+            Cookies.set("wlcm", "true", { expires: -1, path: '/' });   
         }
 
     }
