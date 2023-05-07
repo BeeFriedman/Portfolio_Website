@@ -1,0 +1,71 @@
+body {
+	background-color: #333;
+	color: #0a0;
+}
+
+.navbar-nav {
+	width: 50%;
+}
+
+.nav-link {
+	width: 33%;
+	color: #0a0 !important;
+	text-align: center;
+	font-size: large;
+}
+
+#app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 5%;
+    border: 2px solid #0a0;
+    border-radius: 25px;
+}
+
+form > p{
+    margin: 10px;
+    width: 60%;
+}
+
+form > p > label, input, textarea{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+form > p > input, textarea{
+    background-color: #212529;
+    resize: none;
+    border: none;
+    color: white;
+    margin: auto;
+}
+
+.error{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 5%;
+    border: 2px solid red;
+    border-radius: 25px; 
+}
+li{
+    color: red;
+}
+#send{
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    color:#0a0;
+}
