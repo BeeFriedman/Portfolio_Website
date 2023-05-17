@@ -106,7 +106,7 @@ function loadAbout() {
     window.location.href = "about.html";
 }
 
-//prints out the output for the about directory
+//prints out the output for the contact directory
 function loadContact() {
     window.location.href = "contact.html";
 }

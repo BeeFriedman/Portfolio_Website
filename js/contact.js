@@ -13,7 +13,12 @@ Vue.component('contact-form', {
         <p>
             <label for="email">Email Address:</label>
             <input id="email" v-model="email">
-        </p>               
+        </p>  
+        
+        <p>
+            <label for="age">Age:</label>
+            <input id="age" v-model="age">
+        </p>        
         
         <p>
             <label for="message">Message:</label>      
@@ -36,31 +41,62 @@ Vue.component('contact-form', {
         firstName: null,
         lastName: null,
         email: null,
+        age: null,
         message: null,
-        errors: []
+        errors: [],
+        isValid : true
       }
     },
     methods: {
         formSubmission() {
             this.errors = [];
+
+            if(!this.firstName) {
+                this.errors.push("Enter First Name.")
+                this.isValid = false;
+            } else if(!/^[A-Za-z\s]+$/.test(this.firstName)) {
+                this.errors.push("Enter a valid first name.")
+                this.isValid = false;
+            }
+            if(!this.lastName) {
+                this.errors.push("Enter Last Name.")
+                this.isValid = false;
+            } else if(!/^[A-Za-z\s]+$/.test(this.lastName)) {
+                this.errors.push("Enter a valid last name.")
+                this.isValid = false;
+            }
+            if(!this.email) {
+                this.errors.push("Enter Email Address.")
+                this.isValid = false;
+            } else if(!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/.test(this.email)) {
+                this.errors.push("Enter a vaild email address.")
+                this.isValid = false;
+            }
+            if(!this.age) {
+                this.errors.push("Enter age.")
+                this.isValid = false;
+            } else if(!/^[0-9]+$/.test(this.age)) {
+                this.errors.push("Enter a numberic value.")
+                this.isValid = false;
+            }
+            if(!this.message) {
+                this.errors.push("Enter message")
+                this.isValid = false;
+            }
             
-            if(this.firstName && this.lastName && this.email && this.message) {
+            if(this.isValid) {
                 let contactForm = {
                     Name: this.fullName,
                     email: this.email,
+                    age: this.age,
                     message: this.message
                 }
                     this.$emit('contact-submitted', contactForm)
                     this.firstName = null,
                     this.lastName = null,
                     this.email =null,
+                    this.age = null,
                     this.message= null
-            }
-            else {
-                if(!this.firstName) this.errors.push("Enter First Name.")
-                if(!this.lastName) this.errors.push("Enter Last Name.")
-                if(!this.email) this.errors.push("Enter Email Address.")
-                if(!this.message) this.errors.push("Enter message")
             }
         }
     },
@@ -73,12 +109,10 @@ Vue.component('contact-form', {
 
 var app = new Vue({
     el: '#app',
-    data: {
-    },
     methods: {
         sendForm(contactForm) {
-            console.log(contactForm)
-            //TO-DO acctualy send email to from user.
+            alert("Successfully submitted, please make sure that contact info is right." + "\n" +
+            contactForm.Name + "\n" + contactForm.email + "\n" + contactForm.age);
         }
     }
 })
