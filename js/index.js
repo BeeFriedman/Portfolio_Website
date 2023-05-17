@@ -92,7 +92,7 @@ function displayHelp() {
 
 //prints out the output for the ls command
 function displayLs() {
-    var outputText = [`projects`, `br`, `about`, `br`];
+    var outputText = [`projects`, `br`, `about`, `br`, `contact`, `br`];
     createOutputLine(outputText);
 }
 
@@ -104,6 +104,11 @@ function loadProjects() {
 //prints out the output for the about directory
 function loadAbout() {
     window.location.href = "about.html";
+}
+
+//prints out the output for the about directory
+function loadContact() {
+    window.location.href = "contact.html";
 }
 
 //prints out the output for the wrong inputs
@@ -123,20 +128,12 @@ $("textarea").on("input", function(e) {
 
 //when the page is finished loading it prints the first line
 onload = () => {
-    var CookieValue = Cookies.get("wlcm");
-    console.log(CookieValue)
-    if(!CookieValue) {
-        app.welcome();
-    
-        setTimeout(() => {
-            createNewUserInputLine();
-            document.documentElement.addEventListener("keyup", captureEnterPress);
-        }, 13000);  
-    }
-    else{
+    app.welcome();
+
+    setTimeout(() => {
         createNewUserInputLine();
-        document.documentElement.addEventListener("keyup", captureEnterPress); 
-    }
+        document.documentElement.addEventListener("keyup", captureEnterPress);
+    }, 13000);  
 
     $(document).on("input", "textarea", function()
     {
@@ -178,8 +175,7 @@ var app = new Vue({
                 } else {
                     clearInterval(intervalId);
                 }
-            }, 50)
-            Cookies.set("wlcm", "true", { expires: -1, path: '/' });   
+            }, 50) 
         }
 
     }

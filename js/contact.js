@@ -42,6 +42,8 @@ Vue.component('contact-form', {
     },
     methods: {
         formSubmission() {
+            this.errors = [];
+            
             if(this.firstName && this.lastName && this.email && this.message) {
                 let contactForm = {
                     Name: this.fullName,
