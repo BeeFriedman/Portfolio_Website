@@ -1,50 +1,52 @@
-var a = document.getElementsByTagName("a");
-var t = document.getElementById("tictactoe");
-var t1 = document.getElementById("2");
-var t2 = document.getElementById("3");
-
-a[3].onclick = () => {
-    if(t.style.gridColumnEnd == 4){
-        t.style.gridColumnStart = 1;
-        t.style.gridColumnEnd = 2;  
-        t1.style.display = "block";
-        t2.style.display = "block";
-    }
-    else{
-        t1.style.display = "none";
-        t2.style.display = "none";
-        t.style.gridColumnStart = 1;
-        t.style.gridColumnEnd = 4;
-    }
-};
-
-a[4].onclick = () => {
-    if(t1.style.gridColumnEnd == 4){
-        t1.style.gridColumnStart = 2;
-        t1.style.gridColumnEnd = 3;  
-        t.style.display = "block";
-        t2.style.display = "block";
-    }
-    else{
-        t.style.display = "none";
-        t2.style.display = "none";
-        t1.style.gridColumnStart = 1;
-        t1.style.gridColumnEnd = 4;
-    }
-};
-
-a[5].onclick = () => {
-    if(t2.style.gridColumnEnd == 4){
-        t2.style.gridColumnStart = 3;
-        t2.style.gridColumnEnd = 4;  
-        t.style.display = "block";
-        t1.style.display = "block";
-    }
-    else{
-        t.style.display = "none";
-        t1.style.display = "none";
-        t2.style.gridColumnStart = 1;
-        t2.style.gridColumnEnd = 4;
-    }
-};
+$("#document").ready(function(){
+    $.ajax({
+        url: 'https://api.github.com/users/BeeFriedman/repos',
+        method: 'GET',
+        dataType: 'json',
+        success: function(repositories) {
+          // Process the repositories here
+          repositories.forEach(function(repository) {
+            var div = document.createElement("li");
+            div.innerHTML = "<h4>" + repository.name + "</h4>";
+            div.innerHTML +="<p>" + repository.description + "</p>";
+            div.innerHTML +="<div><a href='" + repository.html_url + "'>" + repository.html_url + "</a></div>";
+            $("#list").append(div);
+        });
+        // Variables to keep track of the current slide and total number of slides
+        var currentSlide = 0;
+        var totalSlides = $("#list li").length;
+        var slideWidth = $("#list li").width();
+        
+        // Function to move the slideshow to the next slide
+        function moveNext() {
+            if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            var slidePosition = -currentSlide * slideWidth;
+            $("#list").animate({ marginLeft: slidePosition }, 500);
+            }
+        }
+        
+        // Function to move the slideshow to the previous slide
+        function movePrev() {
+            if (currentSlide > 0) {
+            currentSlide--;
+            var slidePosition = -currentSlide * slideWidth;
+            $("#list").animate({ marginLeft: slidePosition }, 500);
+            }
+        }
+        
+        // Event handlers for the left and right buttons
+        $("#left_button").click(function() {
+            movePrev();
+        });
+        
+        $("#right_button").click(function() {
+            moveNext();
+        });          
+        },
+        error: function(status, error) {
+          console.error(status + ': ' + error);
+        }
+      });
+});
 
