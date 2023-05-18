@@ -47,6 +47,20 @@ $("#document").ready(function(){
         error: function(status, error) {
           console.error(status + ': ' + error);
         }
-      });
+    });
+    // Get the current page URL
+    var currentURL = window.location.href;
+
+    // Iterate over each navigation link
+    $('.navbar-nav .nav-link').each(function() {
+        // Get the link's URL
+        var linkURL = $(this).attr('href');
+
+        // Check if the link's URL matches the current page URL
+        if (currentURL.includes(linkURL)) {
+            // Add the 'active' class to the link
+            $(this).addClass('active');
+        }
+    });    
 });
 

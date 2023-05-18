@@ -1,7 +1,28 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+  }
+  
 body {
 	background-color: #333;
 	color: #0a0;
 }
+
+#container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+  }
+  
+  main {
+	flex-grow: 1;
+  }
+  
+  footer {
+	background-color: #f2f2f2;
+	padding: 10px;
+  }
 
 .navbar-nav {
 	width: 50%;
@@ -14,6 +35,19 @@ body {
 	font-size: large;
 }
 
+.nav-link.active {
+    background-color: white;
+}
+
+#logo {
+	background-image: url("../images/logo.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: inherit;
+	width: inherit;
+	margin-right: 5px;
+}
+
 #sidebar {
 	width: 15%;
 	float: left; 
@@ -21,25 +55,6 @@ body {
 #app {
 	margin: 2%;
 	font-family: Times New Roman;
-}
-
-/* The header styles */
-
-header {
-	display: grid;
-	grid-template-columns: repeat(3, auto);
-	grid-template-rows: 30px;
-	width: 473px;
-	justify-content: center;
-	text-align: center;
-}
-
-.header-text {
-	float: left;
-	font-size: 30px;
-	height: 30px;
-	width: 430px;
-	margin: 0;
 }
 
 .my-border {

@@ -9,20 +9,30 @@
         <title>Contact</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link" href="index.html">Home</a>
-                        <a class="nav-link" href="projects.html">Projects</a>
-                        <a class="nav-link" href="about.html">About</a>
-                        <a class="nav-link" href="contact.html">Contact</a>
+        <div id="container">
+            <main>
+                <!--Header-->
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                                <div class="nav-link" id="logo"></div>
+                                <a class="nav-link" href="index.html">Home</a>
+                                <a class="nav-link" href="projects.html">Projects</a>
+                                <a class="nav-link" href="about.html">About</a>
+                                <a class="nav-link" href="contact.html">Contact</a>
+                            </div>
+                        </div>
                     </div>
+                </nav>
+                <!--Header-->
+                <div id="app">
+                    <contact-form @contact-submitted="sendForm"></contact-form>
                 </div>
-            </div>
-        </nav>
-        <div id="app">
-            <contact-form @contact-submitted="sendForm"></contact-form>
+            </main>
+            <!--Footer-->
+            <footer>&copy BeeFriedman 2023</footer>
+            <!--Footer-->
         </div>
         <script src="js/jquery-3.6.3.min.js"></script>
         <script src="js/jquery-ui-1.13.2/jquery-ui-1.13.2/jquery-ui.min.js"></script>
