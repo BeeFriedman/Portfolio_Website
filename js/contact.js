@@ -18,7 +18,12 @@ Vue.component('contact-form', {
         <p>
             <label for="age">Age:</label>
             <input id="age" v-model="age">
-        </p>        
+        </p>  
+
+        <p>
+            <label>Date Of Birth</label>
+            <input type="text" id="datepicker">
+        </p>
         
         <p>
             <label for="message">Message:</label>      
@@ -113,6 +118,12 @@ var app = new Vue({
         sendForm(contactForm) {
             alert("Successfully submitted, please make sure that contact info is right." + "\n" +
             contactForm.Name + "\n" + contactForm.email + "\n" + contactForm.age);
+        },
+        dateSetup() {
+            $("#datepicker").datepicker();
         }
+    },
+    mounted() {
+        this.dateSetup();
     }
 })
