@@ -73,7 +73,7 @@
                 var currentURL = window.location.href;
                 $('.navbar-nav .nav-link').each(function() {
                     var linkURL = $(this).attr('href');
-					if (currentURL === 'https://beefriedman.com/') {
+					if (currentURL === 'https://beefriedman.com/' && linkURL === 'index.html') {
 						$(this).addClass('active');
 					}					
                     else if (currentURL.includes(linkURL)) {

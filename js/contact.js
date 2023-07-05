@@ -134,7 +134,7 @@ var app = new Vue({
             var linkURL = $(this).attr('href');
 
             // Check if the link's URL matches the current page URL
-			if (currentURL === 'https://beefriedman.com/') {
+			if (currentURL === 'https://beefriedman.com/' && linkURL === 'index.html') {
 				$(this).addClass('active');
 			}			
 			else if (currentURL.includes(linkURL)) {
