@@ -16,7 +16,6 @@
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
-                                <div class="nav-link" id="logo"></div>
                                 <a class="nav-link" href="index.html">Home</a>
                                 <a class="nav-link" href="projects.html">Projects</a>
                                 <a class="nav-link" href="about.html">About</a>
@@ -74,7 +73,10 @@
                 var currentURL = window.location.href;
                 $('.navbar-nav .nav-link').each(function() {
                     var linkURL = $(this).attr('href');
-                    if (currentURL.includes(linkURL)) {
+					if (currentURL === 'https://beefriedman.com/') {
+						$(this).addClass('active');
+					}					
+                    else if (currentURL.includes(linkURL)) {
                         $(this).addClass('active');
                     }
                 });
