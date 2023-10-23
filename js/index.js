@@ -181,7 +181,8 @@ var app = new Vue({
                 " I tried designing this site to imitate a computer terminal. You could type help to get a list of commands." + 
                 " If you don't want to type in order to navigate the site feel free to use the navigation bar.";
             inputLineTextbox.style.overflow = "hidden";
-	    inputLineTextbox.spellcheck="false";
+            inputLineTextbox.disabled = true;
+	        inputLineTextbox.spellcheck = false;
             inputLineTextbox.focus();
 
             var i = 0;
