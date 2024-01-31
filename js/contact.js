@@ -16,16 +16,6 @@ Vue.component('contact-form', {
         </p>  
         
         <p>
-            <label for="age">Age:</label>
-            <input id="age" v-model="age">
-        </p>  
-
-        <p>
-            <label>Date Of Birth</label>
-            <input type="text" id="datepicker">
-        </p>
-        
-        <p>
             <label for="message">Message:</label>      
             <textarea id="message" v-model="message"></textarea>
         </p>
@@ -46,7 +36,6 @@ Vue.component('contact-form', {
         firstName: null,
         lastName: null,
         email: null,
-        age: null,
         message: null,
         errors: [],
         isValid : true
@@ -77,32 +66,45 @@ Vue.component('contact-form', {
                 this.errors.push("Enter a vaild email address.")
                 this.isValid = false;
             }
-            if(!this.age) {
-                this.errors.push("Enter age.")
-                this.isValid = false;
-            } else if(!/^[0-9]+$/.test(this.age)) {
-                this.errors.push("Enter a numberic value.")
-                this.isValid = false;
-            }
             if(!this.message) {
                 this.errors.push("Enter message")
                 this.isValid = false;
             }
             
-            if(this.isValid) {
-                let contactForm = {
-                    Name: this.fullName,
-                    email: this.email,
-                    age: this.age,
-                    message: this.message
-                }
-                    this.$emit('contact-submitted', contactForm)
-                    this.firstName = null,
-                    this.lastName = null,
-                    this.email =null,
-                    this.age = null,
-                    this.message= null
+            let contactForm = {
+                Name: this.fullName,
+                email: this.email,
+                message: this.message
             }
+            if(this.isValid) {
+
+                const formData = new FormData();
+                formData.append('firstName', this.firstName);
+                formData.append('lastName', this.lastName);
+                formData.append('email', this.email);
+                formData.append('message', this.message);
+                
+                fetch('https://formspree.io/f/xqkrpzln', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                    'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        sendForm(contactForm)
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+            this.$emit('contact-submitted', contactForm)
+            this.firstName = null,
+            this.lastName = null,
+            this.email = null,
+            this.message= null
         }
     },
     computed: {
@@ -112,6 +114,7 @@ Vue.component('contact-form', {
     }
   })
 
+
 var app = new Vue({
     el: '#app',
     methods: {
@@ -119,12 +122,8 @@ var app = new Vue({
             alert("Successfully submitted, please make sure that contact info is right." + "\n" +
             contactForm.Name + "\n" + contactForm.email + "\n" + contactForm.age);
         },
-        dateSetup() {
-            $("#datepicker").datepicker();
-        }
     },
     mounted() {
-        this.dateSetup();
           // Get the current page URL
         var currentURL = window.location.href;
 
