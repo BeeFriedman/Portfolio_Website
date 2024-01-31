@@ -26,18 +26,25 @@
                     </nav>
                     <!--Header-->
                     <section id="carousel">
-                        <div id="left_button" class="button_panel"><img src="images/left.jpg" alt=""></div>
+                        <div id="left_button" class="button_panel"><img src="images/arrow-back-ios.svg" alt=""></div>
                         <div id="display_panel"> 
                             <ul id="list"></ul>
                         </div>
-                        <div id="right_button" class="button_panel"><img src="images/right.jpg" alt=""></div>
+                        <div id="right_button" class="button_panel"><img src="images/arrow-forward-ios.svg" alt=""></div>
                     </section>
             </main>
             <!--Footer-->
-            <footer>&copy BeeFriedman 2023</footer>
+            <footer>&copy BeeFriedman </footer>
             <!--Footer-->
         </div>
         <script src="js/jquery-3.6.3.min.js"></script>
         <script src="js/projects.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function() {
+                const d = new Date();
+                let year = d.getFullYear();
+                $("footer").innerHTML += year;
+            });
+        </script>
     </body>
 </html>
