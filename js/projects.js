@@ -6,8 +6,6 @@ $("#document").ready(function(){
         success: function(repositories) {
           // Process the repositories here
           repositories.forEach(function(repository) {
-            if(repository.description == null)
-                respoitory.description = "";
             var div = document.createElement("li");
             div.innerHTML = "<h4>" + repository.name + "</h4>";
             div.innerHTML +="<p>" + repository.description + "</p>";

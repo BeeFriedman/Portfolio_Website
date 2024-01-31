@@ -39,7 +39,7 @@
                             </div>
                             <h3 class="card-header">Experience</h3>
                             <div class="card-body">
-                                <p class="card-body">I am working as a Software Developer at Jack Jaffa & Associates since August of last year.</p>
+                                <p class="card-body">I am working as a Software Developer at Jack Jaffa & Associates since June of 2022.</p>
                                 <div id="tabs">
                                     <ul>
                                         <li><a href="#tabs-1">Front-End</a></li>
@@ -66,7 +66,7 @@
             $(document).ready(function() {
                 const d = new Date();
                 let year = d.getFullYear();
-                $("footer").innerHTML += year;
+                $("footer")[0].innerHTML += year;
                 $("#tabs").tabs();
                 $("#accordion").accordion({ 
                         event: "click",
