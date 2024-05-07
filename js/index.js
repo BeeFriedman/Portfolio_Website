@@ -194,7 +194,7 @@ var app = new Vue({
                 } else {
                     clearInterval(intervalId);
                 }
-            }, 30) 
+            }, 15) 
         }
 
     }
