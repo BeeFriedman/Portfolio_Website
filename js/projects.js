@@ -8,7 +8,8 @@ $("#document").ready(function(){
           repositories.forEach(function(repository) {
             var div = document.createElement("li");
             div.innerHTML = "<h4>" + repository.name + "</h4>";
-            div.innerHTML +="<p>" + repository.description + "</p>";
+	    if(repository.description != null)
+        	div.innerHTML +="<p>" + repository.description + "</p>";
             div.innerHTML +="<div><a href='" + repository.html_url + "'>" + repository.html_url + "</a></div>";
             $("#list").append(div);
         });
