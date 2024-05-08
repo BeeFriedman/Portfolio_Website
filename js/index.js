@@ -133,7 +133,7 @@ onload = () => {
     setTimeout(() => {
         createNewUserInputLine();
         document.documentElement.addEventListener("keyup", captureEnterPress);
-    }, 13000);  
+    }, 3000);  
 
     $(document).on("input", "textarea", function()
     {
