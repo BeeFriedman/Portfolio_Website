@@ -44,6 +44,7 @@ Vue.component('contact-form', {
     methods: {
         formSubmission() {
             this.errors = [];
+			this.isValid = true; 
 
             if(!this.firstName) {
                 this.errors.push("Enter First Name.")
@@ -93,18 +94,13 @@ Vue.component('contact-form', {
                 })
                 .then(response => {
                     if (response.ok) {
-                        sendForm(contactForm)
+					   this.$emit('contact-submitted', contactForm);
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
                 });
             }
-            this.$emit('contact-submitted', contactForm)
-            this.firstName = null,
-            this.lastName = null,
-            this.email = null,
-            this.message= null
         }
     },
     computed: {
@@ -120,7 +116,7 @@ var app = new Vue({
     methods: {
         sendForm(contactForm) {
             alert("Successfully submitted, please make sure that contact info is right." + "\n" +
-            contactForm.Name + "\n" + contactForm.email + "\n" + contactForm.age);
+            contactForm.Name + "\n" + contactForm.email);
         },
     },
     mounted() {
