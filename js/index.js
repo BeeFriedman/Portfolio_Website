@@ -177,9 +177,10 @@ var app = new Vue({
             inputLine.appendChild(inputLineLabel);
             inputLine.appendChild(inputLineTextbox);
             terminalContanier.appendChild(inputLine);
-            var welcome = "Hi, my name is Berel Friedman and I am a software developer." +
-                " Type help to get a list of commands." + 
-                " If you don't want to type you could navigate the site through the navigation bar.";
+		  
+            var welcome = "Hi, my name is Berel Friedman, I am a software Engineer." +
+                " Type 'help' to get a list of commands." + 
+                " If you don't want to type, you can navigate the site through the navigation bar.";
             inputLineTextbox.style.overflow = "hidden";
             inputLineTextbox.disabled = true;
 	        inputLineTextbox.spellcheck = false;
