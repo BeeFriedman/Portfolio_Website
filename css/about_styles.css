@@ -46,3 +46,22 @@ body {
 	height: inherit;
 	width: inherit;
 }
+
+#info-container {
+	margin-top: 50px;
+}
+
+#info-container .card, #accordion, .ui-widget-content, .ui-accordion-header{
+	background-color: #333!important;
+	color: #0a0!important;
+	border-color: #0a0!important;
+}
+#info-container, .ui-tabs-nav, .ui-tabs-tab{
+	background-color: #333!important;
+	color: #0a0!important;
+	border: none!important;
+}
+
+#ui-id-1, #ui-id-2{
+	color:#0a0;
+}
