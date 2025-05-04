@@ -1,0 +1,7 @@
+# robots.txt for https://beefriedman.com/
+
+User-agent: *
+Disallow:
+
+# Sitemap location
+Sitemap: https://beefriedman.com/sitemap.xml
