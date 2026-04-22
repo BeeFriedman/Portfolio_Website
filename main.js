@@ -54,6 +54,7 @@ const sections = {
   about: '#about',
   projects: '#projects',
   skills: '#skills',
+  certifications: '#certifications',
   contact: '#contact'
 };
 
